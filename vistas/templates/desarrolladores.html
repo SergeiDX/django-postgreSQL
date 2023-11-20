@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title %}Desarrolladores{% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-dissmisable alert-success">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong class="text-dark">{{ message }}</strong>
+        </div>
+        {% endfor %}
+        {% endif %}
+        <h2>Desarrolladores</h2>
+        <div class="card">
+            <div class="card-body">
+                <form action="/registrarDesarrollador/" method="POST"> {% csrf_token %}
+                    <div class="form-group py-2">
+                        <input type="text" id="nombre_desarrollador" name="nombre_desarrollador" class="form-control" placeholder="Nombre" maxlength="100" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="date" id="fundacion" name="fundacion" class="form-control" placeholder="Fecha" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" id="sitio_web" name="sitio_web" class="form-control" placeholder="Sitio Web" maxlength="100" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" id="pais_origen" name="pais_origen" class="form-control" placeholder="Pais de Origen" maxlength="100" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success btn-block text-white">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+        <div class="table-responsive py-2">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Fundacion</th>
+                        <th>Sitio Web</th>
+                        <th>Pais de Origen</th>
+                        <th colspan="2">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for d in desarrolladores %}
+                    <tr>
+                        <td>{{d.id}}</td>
+                        <td>{{d.nombre_desarrollador}}</td>
+                        <td>{{d.fundacion}}</td>
+                        <td>{{d.sitio_web}}</td>
+                        <td>{{d.pais_origen}}</td>
+                        <td><a href="/editarDesarrollador/{{d.id}}" class="btn btn-info">Editar</a></td>
+                        <td><a href="/eliminarDesarrollador/{{d.id}}" class="btn btn-danger">Eliminar</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}

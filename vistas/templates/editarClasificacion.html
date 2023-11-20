@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %} Editar Clasificacion {% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <h2>Editar Clasificacion</h2>
+        <div class="card">
+            <div class="card-body">
+                <form action="/edicionClasificacion/" method="POST"> {% csrf_token %}
+                    <div class="form-group py-2">
+                        <input type="text" id="id" name="id" value="{{clasificacion.id}}" class="form-control" readonly>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" id="clasificacion" name="clasificacion" value="{{clasificacion.clasificacion}}" class="form-control" placeholder="Clasificacion" maxlength="100" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" id="tipo_clasificacion" name="tipo_clasificacion" value="{{clasificacion.tipo_clasificacion}}" class="form-control" placeholder="Tipo de clasificacion" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success btn-block text-white">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

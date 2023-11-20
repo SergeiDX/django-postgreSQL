@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %} Editar Desarrollador {% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <h2>Editar Desarrollador</h2>
+        <div class="card">
+            <div class="card-body">
+                <form action="/edicionDesarrollador/" method="POST"> {% csrf_token %}
+                    <div class="form-group py-2">
+                        <input type="text" id="id" name="id" value="{{desarrollador.id}}" class="form-control" readonly>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" id="nombre_desarrollador" name="nombre_desarrollador" value="{{desarrollador.nombre_desarrollador}}" class="form-control" placeholder="Nombre" maxlength="100" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="date" id="fundacion" name="fundacion" value="{{desarrollador.fundacion}}" class="form-control" placeholder="Fecha" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" id="sitio_web" name="sitio_web" value="{{desarrollador.sitio_web}}" class="form-control" placeholder="Sitio Web" maxlength="100" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" id="pais_origen" name="pais_origen" value="{{desarrollador.pais_origen}}" class="form-control" placeholder="Pais de Origen" maxlength="100" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success btn-block text-white">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

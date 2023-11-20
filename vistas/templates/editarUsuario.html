@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %} Editar Usuario {% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <h2>Editar Usuario</h2>
+        <div class="card">
+            <div class="card-body">
+                <form action="/edicionUsuario/" method="POST"> {% csrf_token %}
+                    <div class="form-group py-2">
+                        <input type="text" id="id" name="id" value="{{usuario.id}}" class="form-control" readonly>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" id="username" name="username" value="{{usuario.username}}" class="form-control" placeholder="Nombre de usuario" maxlength="100" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" id="correo" name="correo" value="{{usuario.correo}}" class="form-control" placeholder="Correo electronico" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success btn-block text-white">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

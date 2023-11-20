@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}Videojuegos{% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-dissmisable alert-success">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong class="text-dark">{{ message }}</strong>
+        </div>
+        {% endfor %}
+        {% endif %}
+        <h2>Videojuegos</h2>
+        <div class="card">
+            <div class="card-body">
+                <form action="/registrarVideojuego/" method="POST"> {% csrf_token %}
+                    <div class="form-group py-2">
+                        <input type="text" id="titulo_videojuego" name="titulo_videojuego" class="form-control" placeholder="Titulo" maxlength="100" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="date" id="lanzamiento" name="lanzamiento" class="form-control" placeholder="Fecha" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" id="desarrolladorid" name="desarrolladorid" class="form-control" placeholder="ID Desarrollador" maxlength="100" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success btn-block text-white">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+        <div class="table-responsive py-2">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Titulo</th>
+                        <th>Lanzamiento</th>
+                        <th>Desarrollador</th>
+                        <th colspan="2">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for v in videojuegos %}
+                    <tr>
+                        <td>{{v.id}}</td>
+                        <td>{{v.titulo_videojuego}}</td>
+                        <td>{{v.lanzamiento}}</td>
+                        <td>{{v.desarrollador}}</td>
+                        <td><a href="/editarVideojuego/{{v.id}}" class="btn btn-info">Editar</a></td>
+                        <td><a href="/eliminarVideojuego/{{v.id}}" class="btn btn-danger">Eliminar</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}

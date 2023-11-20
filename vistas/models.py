@@ -45,6 +45,13 @@ class contrato(models.Model):
     fecha_actualizacion = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de Actualizacion")
     
     def __str__(self):
+        return self.desarrollador
+    
+    def __str__(self):
+        return self.empresa
+    
+    
+    def __str__(self):
         return self.descripcion_contrato
     
     class Meta:
@@ -138,6 +145,10 @@ class Ventas(models.Model):
     fecha_venta = models.DateField(null=False, verbose_name="Fecha de venta")
     fecha_alta = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de Alta")
     fecha_actualizacion = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de Actualizacion")
+    
+    def __str__(self):
+        return str(self.fecha_venta)
+    
     
     class Meta:
         db_table = "ventas"

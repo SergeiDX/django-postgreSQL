@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %} Editar Contrato {% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <h2>Editar Contrato</h2>
+        <div class="card">
+            <div class="card-body">
+                <form action="/edicionContrato/" method="POST"> {% csrf_token %}
+                    <div class="form-group py-2">
+                        <input type="text" id="id" name="id" value="{{contrato.id}}" class="form-control" readonly>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" id="descripcion_contrato" name="descripcion_contrato" value="{{contrato.descripcion_contrato}}" class="form-control" placeholder="Descripcion" maxlength="100" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="date" id="fecha_inicio" name="fecha_inicio" value="{{contrato.fecha_inicio}}" class="form-control" placeholder="Fecha Inicio" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="date" id="fecha_limite" name="fecha_limite" value="{{contrato.fecha_limite}}" class="form-control" placeholder="Fecha Limite" maxlength="100" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" id="desarrolladorid" name="desarrolladorid" value="{{contrato.desarrolladorid}}" class="form-control" placeholder="ID Desarrollador" maxlength="100" >
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" id="empresaid" name="empresaid" value="{{contrato.empresaid}}" class="form-control" placeholder="ID Empresa" maxlength="100" >
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success btn-block text-white">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

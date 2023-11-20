@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %} Editar Tienda {% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <h2>Editar Tienda</h2>
+        <div class="card">
+            <div class="card-body">
+                <form action="/edicionTienda/" method="POST"> {% csrf_token %}
+                    <div class="form-group py-2">
+                        <input type="text" id="id" name="id" value="{{tienda.id}}" class="form-control" readonly>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" id="nombre_tienda" name="nombre_tienda" value="{{tienda.nombre_tienda}}" class="form-control" placeholder="Nombre Tienda" maxlength="100" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" id="videojuegoid" name="videojuegoid" value="{{tienda.videojuegoid}}" class="form-control" placeholder="ID Videojuego" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" id="ventaid" name="ventaid" value="{{tienda.ventaid}}" class="form-control" placeholder="ID Venta" maxlength="100" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success btn-block text-white">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
