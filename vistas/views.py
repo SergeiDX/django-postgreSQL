@@ -1,12 +1,23 @@
 from django.shortcuts import render, redirect
 from .models import *
 from django.contrib import messages
-
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 # Create your views here.
-#Views Empresas
 def home1(request):
-    return render(request, "home1.html")
+    if request.method == "GET":
+        return render(request, "home1.html", {"form":UserCreationForm})
+    else:
+        if request.POST["password1"] == request.POST["password2"]:
+            try:
+                user = User.objects.create_user(username = request.POST["username"], password = request.POST["password1"])
+                user.save()
+            except:
+                return render(request, "/", {"form":UserCreationForm, "error": "El usuario ya existe"})
+        return render(request, "home1.html",{"form":UserCreationForm, "error":"Las contraseñas no coinciden"})
+                
 
+#Views Empresas
 def home(request):
     empresas = Empresa.objects.all()
     return render(request, "empresas.html", {"empresas":empresas})
